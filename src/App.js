@@ -1,36 +1,47 @@
+import React from 'react';
+import Navbar from './components/Navbar';
+import Header from './components/Header';
+import Stats from './components/Stats';
+import BlocksAndTransactions from './components/BlocksAndTransactions';
+
+
 import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
 
-import './App.css';
+//import './App.css';
 
-// Refer to the README doc for more information about using API
-// keys in client-side code. You should never do this in production
-// level code.
 const settings = {
-  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
-  network: Network.ETH_MAINNET,
+    apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
+    network: Network.ETH_MAINNET,
 };
 
-
-// In this week's lessons we used ethers.js. Here we are using the
-// Alchemy SDK is an umbrella library with several different packages.
-//
-// You can read more about the packages here:
-//   https://docs.alchemy.com/reference/alchemy-sdk-api-surface-overview#api-surface
 const alchemy = new Alchemy(settings);
 
+
 function App() {
-  const [blockNumber, setBlockNumber] = useState();
+    const [blockNumber, setBlockNumber] = useState();
 
-  useEffect(() => {
-    async function getBlockNumber() {
-      setBlockNumber(await alchemy.core.getBlockNumber());
-    }
+    useEffect(() => {
+        async function getBlockNumber() {
+            setBlockNumber(await alchemy.core.getBlockNumber());
+        }
 
-    getBlockNumber();
-  });
+        getBlockNumber();
+    }, []);
 
-  return <div className="App">Block Number: {blockNumber}</div>;
+
+    return (
+        <div className="bg-gray-100 font-sans leading-normal tracking-normal">
+            <Navbar />
+            <Header />
+            <main className="container mx-auto p-8">
+                <Stats blockNumber={blockNumber}/>
+                
+                <BlocksAndTransactions />
+            </main>
+        </div>
+    );
 }
 
 export default App;
+
