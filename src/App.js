@@ -4,11 +4,8 @@ import Header from './components/Header';
 import Stats from './components/Stats';
 import BlocksAndTransactions from './components/BlocksAndTransactions';
 
-
 import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
-
-//import './App.css';
 
 const settings = {
     apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
