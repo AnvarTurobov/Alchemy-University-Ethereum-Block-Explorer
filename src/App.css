@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header-bg {
+  background-color: #1c3b57;
+}
+.stats-bg {
+  background-color: #12223a;
+}
