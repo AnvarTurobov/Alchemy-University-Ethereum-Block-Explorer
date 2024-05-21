@@ -4,8 +4,7 @@ function Stats({
   ethPrice,
   ethPriceChange,
   marketCap,
-  medGasPrice,
-  blockNumber,
+  medGasPrice
 }) {
   return (
     <div className="grid grid-cols-3 gap-4 text-center text-gray-700 mb-8">
@@ -28,3 +27,4 @@ function Stats({
 }
 
 export default Stats;
+

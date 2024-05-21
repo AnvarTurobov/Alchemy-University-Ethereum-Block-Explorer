@@ -2,7 +2,7 @@ import React from 'react';
 
 function Navbar() {
   return (
-    <nav className="header-bg p-4 text-white">
+    <nav className="header-bg p-4 text-black">
       <div className="container mx-auto flex justify-between items-center">
         <a href="#" className="text-lg font-bold">ScanBlock</a>
         <div>

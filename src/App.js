@@ -21,7 +21,8 @@ function App() {
   const [medGasPrice, setMedGasPrice] = useState(null);
   const [lastFinalizedBlock, setLastFinalizedBlock] = useState(null);
   const [lastSafeBlock, setLastSafeBlock] = useState(null);
-  const [blockNumber, setBlockNumber] = useState(); 
+  const [blockNumber, setBlockNumber] = useState();
+  const [latestBlocks, setLatestBlocks] = useState([]);
 
   useEffect(() => {
     const fetchEthData = async () => {
@@ -43,16 +44,24 @@ function App() {
         const [blockNumber, gasPrice, block] = await Promise.all([
           alchemy.core.getBlockNumber(),
           alchemy.core.getGasPrice(),
-          alchemy.core.getBlock('latest'),
+          alchemy.core.getBlockWithTransactions('latest'),
         ]);
 
         setBlockNumber(blockNumber);
         setLastFinalizedBlock(blockNumber);
         setLastSafeBlock(blockNumber);
         setMedGasPrice((gasPrice / 1e9).toFixed(2)); // Converting Wei to Gwei
+        setLatestBlocks([block]); // Setting the latest block data
 
         // Estimating transaction count 
         setTransactionCount(block.transactions.length);
+
+        // Getting additional blocks for display
+        const additionalBlocks = await Promise.all(
+          Array.from({ length: 6 }, (_, i) => alchemy.core.getBlockWithTransactions(blockNumber - (i + 1)))
+        );
+        setLatestBlocks([block, ...additionalBlocks]);
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -76,7 +85,9 @@ function App() {
           lastSafeBlock={lastSafeBlock}
           blockNumber={blockNumber}
         />
-        <BlocksAndTransactions lastFinalizedBlock={lastFinalizedBlock} />
+        <BlocksAndTransactions 
+          latestBlocks={latestBlocks}
+        />
       </main>
     </div>
   );

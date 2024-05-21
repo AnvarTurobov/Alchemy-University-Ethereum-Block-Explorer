@@ -1,4 +1,6 @@
-function BlocksAndTransactions() {
+import React from 'react';
+
+function BlocksAndTransactions({ latestBlocks }) {
   return (
     <div className="grid grid-cols-2 gap-4">
       {/* Latest Blocks */}
@@ -10,65 +12,30 @@ function BlocksAndTransactions() {
           </button>
         </div>
         <ul>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">19905708</p>
-              <p>Fee Recipient: Titan Builder</p>
-              <p className="text-gray-500 text-sm">180 txns in 12 secs</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.02362 Eth</p>
-              <p className="text-gray-500 text-sm">13 secs ago</p>
-            </div>
-          </li>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">19905707</p>
-              <p>Fee Recipient: beaverbuild</p>
-              <p className="text-gray-500 text-sm">127 txns in 12 secs</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.061 Eth</p>
-              <p className="text-gray-500 text-sm">13 secs ago</p>
-            </div>
-          </li>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">19905706</p>
-              <p>Fee Recipient: Titan Builder</p>
-              <p className="text-gray-500 text-sm">155 txns in 12 secs</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.12478 Eth</p>
-              <p className="text-gray-500 text-sm">49 secs ago</p>
-            </div>
-          </li>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">19905705</p>
-              <p>Fee Recipient: Titan Builder</p>
-              <p className="text-gray-500 text-sm">227 txns in 12 secs</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.02865 Eth</p>
-              <p className="text-gray-500 text-sm">1 min ago</p>
-            </div>
-          </li>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">19905704</p>
-              <p>Fee Recipient: beaverbuild</p>
-              <p className="text-gray-500 text-sm">176 txns in 12 secs</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.02537 Eth</p>
-              <p className="text-gray-500 text-sm">1 min ago</p>
-            </div>
-          </li>
+          {latestBlocks && latestBlocks.slice(0, 7).map((block, index) => (
+            <li key={index} className="flex justify-between items-center py-2 border-b">
+              <div className="flex items-center">
+                <div className="bg-gray-100 p-2 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-gray-500">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3v18h18V3H3zm12 6h3M9 6h6M6 6h1m-1 6h12M6 18v-6h1m0 6h12m-1 0h-2m2-6H7m7 6h-2m-5 0h1m1 0h6m2-12h1m-1 0H6" />
+                  </svg>
+                </div>
+                <div className="ml-4">
+                  <p className="font-bold text-blue-600"><a href={`https://etherscan.io/block/${block.number}`} target="_blank" rel="noopener noreferrer">{block.number}</a></p>
+                  <p className="text-gray-500 text-sm">{Math.round((Date.now() / 1000) - block.timestamp)} secs ago</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-sm">Fee Recipient: <span className="text-blue-600">{block.miner.slice(0, 10)}</span></p>
+                <p className="text-gray-500 text-sm">{block.transactions.length} txns in {Math.round((Date.now() / 1000) - block.timestamp)} secs</p>
+              </div>
+              <div className="ml-4 p-2 bg-gray-100 rounded-full text-gray-600 text-sm">
+                {block.gasUsed ? (block.gasUsed / 1e9).toFixed(4) : 'N/A'} Eth
+              </div>
+            </li>
+          ))}
         </ul>
-        <button
-          className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded mt-4 w-full"
-        >
+        <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded mt-4 w-full">
           View All Blocks
         </button>
       </div>
@@ -82,65 +49,30 @@ function BlocksAndTransactions() {
           </button>
         </div>
         <ul>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">0x4a8308fe5..</p>
-              <p>From 0x4838B106...B0BAD5F97r</p>
-              <p className="text-gray-500 text-sm">To 0xA8C62111...c42632f64</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.07356 Eth</p>
-              <p className="text-gray-500 text-sm">13 secs ago</p>
-            </div>
-          </li>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">0x8b6e599adf...</p>
-              <p>From 0x834f0b25...82694oFb</p>
-              <p className="text-gray-500 text-sm">To 0xDef1c0de...027b2EF9F</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.061 Eth</p>
-              <p className="text-gray-500 text-sm">43 secs ago</p>
-            </div>
-          </li>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">0x31e51338ef...</p>
-              <p>From 0x8aB87994...80CFf274</p>
-              <p className="text-gray-500 text-sm">To 0x7496062...c418e3087</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.12478 Eth</p>
-              <p className="text-gray-500 text-sm">68 secs ago</p>
-            </div>
-          </li>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">0xa2898e852...</p>
-              <p>From 0xA0E20E5A...a724aefbA</p>
-              <p className="text-gray-500 text-sm">To 0x881D4023...dC08D300C</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.02865 Eth</p>
-              <p className="text-gray-500 text-sm">1 min ago</p>
-            </div>
-          </li>
-          <li className="flex justify-between py-2 border-b">
-            <div>
-              <p className="font-bold">0xd50852c317...</p>
-              <p>From 0x4F9924E4...359bCEbE</p>
-              <p className="text-gray-500 text-sm">To 0x11111112...73A96D502</p>
-            </div>
-            <div className="text-right">
-              <p className="font-bold">0.05539 Eth</p>
-              <p className="text-gray-500 text-sm">1 min ago</p>
-            </div>
-          </li>
+          {latestBlocks && latestBlocks[0] && latestBlocks[0].transactions.slice(0, 7).map((tx, index) => (
+            <li key={index} className="flex justify-between items-center py-2 border-b">
+              <div className="flex items-center">
+                <div className="bg-gray-100 p-2 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-gray-500">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 10h10M7 14h5M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" />
+                  </svg>
+                </div>
+                <div className="ml-4">
+                  <p className="font-bold text-blue-600"><a href={`https://etherscan.io/tx/${tx.hash}`} target="_blank" rel="noopener noreferrer">{tx.hash.slice(0, 10)}...</a></p>
+                  <p className="text-gray-500 text-sm">{Math.round((Date.now() / 1000) - latestBlocks[0].timestamp)} secs ago</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-sm">From <span className="text-blue-600">{tx.from ? `${tx.from.slice(0, 6)}...${tx.from.slice(-4)}` : 'N/A'}</span></p>
+                <p className="text-sm">To <span className="text-blue-600">{tx.to ? `${tx.to.slice(0, 6)}...${tx.to.slice(-4)}` : 'Contract Creation'}</span></p>
+              </div>
+              <div className="ml-4 p-2 bg-gray-100 rounded-full text-gray-600 text-sm">
+                {tx.value ? (tx.value / 1e18).toFixed(4) : 'N/A'} Eth
+              </div>
+            </li>
+          ))}
         </ul>
-        <button
-          className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded mt-4 w-full"
-        >
+        <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded mt-4 w-full">
           View All Transactions
         </button>
       </div>
@@ -149,4 +81,3 @@ function BlocksAndTransactions() {
 }
 
 export default BlocksAndTransactions;
-
