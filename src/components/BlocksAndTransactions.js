@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function BlocksAndTransactions({ latestBlocks }) {
   return (
@@ -21,7 +22,9 @@ function BlocksAndTransactions({ latestBlocks }) {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <p className="font-bold text-blue-600"><a href={`https://etherscan.io/block/${block.number}`} target="_blank" rel="noopener noreferrer">{block.number}</a></p>
+                  <p className="font-bold text-blue-600">
+                    <Link to={`/block/${block.number}`}>{block.number}</Link>
+                  </p>
                   <p className="text-gray-500 text-sm">{Math.round((Date.now() / 1000) - block.timestamp)} secs ago</p>
                 </div>
               </div>
@@ -58,7 +61,7 @@ function BlocksAndTransactions({ latestBlocks }) {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <p className="font-bold text-blue-600"><a href={`https://etherscan.io/tx/${tx.hash}`} target="_blank" rel="noopener noreferrer">{tx.hash.slice(0, 10)}...</a></p>
+                  <p className="font-bold text-blue-600"><Link to={`/transaction/${tx.hash}`}>{tx.hash.slice(0, 10)}...</Link></p>
                   <p className="text-gray-500 text-sm">{Math.round((Date.now() / 1000) - latestBlocks[0].timestamp)} secs ago</p>
                 </div>
               </div>

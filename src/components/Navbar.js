@@ -1,10 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function Navbar() {
   return (
     <nav className="header-bg p-4 text-black">
       <div className="container mx-auto flex justify-between items-center">
-        <a href="#" className="text-lg font-bold">ScanBlock</a>
+        <Link to="/" className="text-black text-xl font-bold">
+          ScanBlock
+        </Link>
         <div>
           <a href="#" className="mx-2">Home</a>
           <a href="#" className="mx-2">Blockchain</a>
@@ -21,3 +25,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

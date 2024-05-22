@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Stats from './components/Stats';
 import BlocksAndTransactions from './components/BlocksAndTransactions';
+import BlockDetails from './components/BlockDetails';
 import axios from 'axios';
 import { Alchemy, Network } from 'alchemy-sdk';
 
@@ -56,7 +58,7 @@ function App() {
         // Estimating transaction count 
         setTransactionCount(block.transactions.length);
 
-        // Getting additional blocks for display
+        // Getting additional blocks for display on latestBlocks and latestTransactions
         const additionalBlocks = await Promise.all(
           Array.from({ length: 6 }, (_, i) => alchemy.core.getBlockWithTransactions(blockNumber - (i + 1)))
         );
@@ -71,25 +73,30 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-gray-100 font-sans leading-normal tracking-normal">
-      <Navbar />
-      <Header />
-      <main className="container mx-auto p-8">
-        <Stats
-          ethPrice={ethPrice}
-          ethPriceChange={ethPriceChange}
-          marketCap={marketCap}
-          transactionCount={transactionCount}
-          medGasPrice={medGasPrice}
-          lastFinalizedBlock={lastFinalizedBlock}
-          lastSafeBlock={lastSafeBlock}
-          blockNumber={blockNumber}
-        />
-        <BlocksAndTransactions 
-          latestBlocks={latestBlocks}
-        />
-      </main>
-    </div>
+    <Router>
+      <div className="bg-gray-100 font-sans leading-normal tracking-normal">
+        <Navbar />
+        <Header />
+        <main className="container mx-auto p-8">
+          <Switch>
+            <Route path="/" exact>
+              <Stats
+                ethPrice={ethPrice}
+                ethPriceChange={ethPriceChange}
+                marketCap={marketCap}
+                transactionCount={transactionCount}
+                medGasPrice={medGasPrice}
+                lastFinalizedBlock={lastFinalizedBlock}
+                lastSafeBlock={lastSafeBlock}
+                blockNumber={blockNumber}
+              />
+              <BlocksAndTransactions latestBlocks={latestBlocks} />
+            </Route>
+            <Route path="/block/:blockNumber" component={BlockDetails} />
+          </Switch>
+        </main>
+      </div>
+    </Router>
   );
 }
 
