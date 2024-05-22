@@ -77,9 +77,11 @@ function BlocksAndTransactions({ latestBlocks }) {
             </li>
           ))}
         </ul>
-        <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded mt-4 w-full">
-          View All Transactions
-        </button>
+        <Link to="/transactions">
+          <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded mt-4 w-full">
+            View All Transactions
+          </button>
+        </Link>
       </div>
     </div>
   );
