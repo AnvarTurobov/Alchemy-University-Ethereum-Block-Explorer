@@ -19,6 +19,7 @@ function Header() {
         <form onSubmit={handleSearch} className="w-full max-w-lg">
           <input
             type="text"
+            style={{ color: '#0ABAB5' }}
             className="p-2 w-full text-black" 
             placeholder="Search by Address / Txn Hash / Block Number"
             value={query}

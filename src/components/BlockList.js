@@ -73,17 +73,17 @@ function BlockList() {
                 </svg>
               </div>
               <div className="ml-4">
-                <p className="font-bold text-blue-600">
+                <p className="font-bold text-[#0ABAB5]">
                   <Link to={`/block/${block.number}`}>{block.number}</Link>
                 </p>
                 <p className="text-gray-500 text-sm">{Math.round((Date.now() / 1000) - block.timestamp)} secs ago</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm">Fee Recipient: <span className="text-blue-600">{block.miner.slice(0, 10)}</span></p>
+              <p className="text-sm">Fee Recipient: <span className="text-[#0ABAB5]">{block.miner.slice(0, 10)}</span></p>
               <p className="text-gray-500 text-sm">{block.transactions.length} txns in {Math.round((Date.now() / 1000) - block.timestamp)} secs</p>
             </div>
-            <div className="ml-4 p-2 bg-gray-100 rounded-full text-gray-600 text-sm">
+            <div className="ml-4 p-2 bg-gray-100 rounded-full text-[#0ABAB5] text-sm">
               {block.gasUsed ? (block.gasUsed / 1e9).toFixed(4) : 'N/A'} Eth
             </div>
           </li>

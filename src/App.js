@@ -64,7 +64,7 @@ function App() {
 
         // Getting additional blocks for display on latestBlocks and latestTransactions
         const additionalBlocks = await Promise.all(
-          Array.from({ length: 6 }, (_, i) => alchemy.core.getBlockWithTransactions(blockNumber - (i + 1)))
+          Array.from({ length: 5 }, (_, i) => alchemy.core.getBlockWithTransactions(blockNumber - (i + 1)))
         );
         setLatestBlocks([block, ...additionalBlocks]);
 

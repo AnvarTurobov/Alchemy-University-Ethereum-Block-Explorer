@@ -40,39 +40,39 @@ function TransactionDetails() {
         <div className="space-y-4">
           <div className="flex items-center">
             <span className="font-bold">Transaction Hash:</span>
-            <span data-tooltip-id="txHashTooltip" data-tooltip-content="The unique identifier for this transaction." className="tooltip-icon ml-2">❓</span>
+            <span data-tooltip-id="txHashTooltip" data-tooltip-content="The unique identifier for this transaction." className="tooltip-icon ml-2">ℹ️</span>
           </div>
           <div className="flex items-center">
             <span className="font-bold">Status:</span>
-            <span data-tooltip-id="statusTooltip" data-tooltip-content="The status of the transaction." className="tooltip-icon ml-2">❓</span>
+            <span data-tooltip-id="statusTooltip" data-tooltip-content="The status of the transaction." className="tooltip-icon ml-2">ℹ️</span>
           </div>
           <div className="flex items-center">
             <span className="font-bold">Block:</span>
-            <span data-tooltip-id="blockTooltip" data-tooltip-content="The block number that contains this transaction." className="tooltip-icon ml-2">❓</span>
+            <span data-tooltip-id="blockTooltip" data-tooltip-content="The block number that contains this transaction." className="tooltip-icon ml-2">ℹ️</span>
           </div>
           <div className="flex items-center">
             <span className="font-bold">Timestamp:</span>
-            <span data-tooltip-id="timestampTooltip" data-tooltip-content="The time at which the block containing the transaction was mined." className="tooltip-icon ml-2">❓</span>
+            <span data-tooltip-id="timestampTooltip" data-tooltip-content="The time at which the block containing the transaction was mined." className="tooltip-icon ml-2">ℹ️</span>
           </div>
           <div className="flex items-center">
             <span className="font-bold">From:</span>
-            <span data-tooltip-id="fromTooltip" data-tooltip-content="The address that sent the transaction." className="tooltip-icon ml-2">❓</span>
+            <span data-tooltip-id="fromTooltip" data-tooltip-content="The address that sent the transaction." className="tooltip-icon ml-2">ℹ️</span>
           </div>
           <div className="flex items-center">
             <span className="font-bold">To:</span>
-            <span data-tooltip-id="toTooltip" data-tooltip-content="The address that received the transaction." className="tooltip-icon ml-2">❓</span>
+            <span data-tooltip-id="toTooltip" data-tooltip-content="The address that received the transaction." className="tooltip-icon ml-2">ℹ️</span>
           </div>
           <div className="flex items-center">
             <span className="font-bold">Value:</span>
-            <span data-tooltip-id="valueTooltip" data-tooltip-content="The amount of Ether transferred in the transaction." className="tooltip-icon ml-2">❓</span>
+            <span data-tooltip-id="valueTooltip" data-tooltip-content="The amount of Ether transferred in the transaction." className="tooltip-icon ml-2">ℹ️</span>
           </div>
           <div className="flex items-center">
             <span className="font-bold">Transaction Fee:</span>
-            <span data-tooltip-id="txFeeTooltip" data-tooltip-content="The fee paid for the transaction." className="tooltip-icon ml-2">❓</span>
+            <span data-tooltip-id="txFeeTooltip" data-tooltip-content="The fee paid for the transaction." className="tooltip-icon ml-2">ℹ️</span>
           </div>
           <div className="flex items-center">
             <span className="font-bold">Gas Price:</span>
-            <span data-tooltip-id="gasPriceTooltip" data-tooltip-content="The price of gas for this transaction." className="tooltip-icon ml-2">❓</span>
+            <span data-tooltip-id="gasPriceTooltip" data-tooltip-content="The price of gas for this transaction." className="tooltip-icon ml-2">ℹ️</span>
           </div>
         </div>
         <div className="space-y-4">

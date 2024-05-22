@@ -75,17 +75,17 @@ function TransactionList() {
                 </svg>
               </div>
               <div className="ml-4">
-                <p className="font-bold text-blue-600">
+                <p className="font-bold text-[#0ABAB5]">
                   <Link to={`/transaction/${tx.hash}`}>{tx.hash.slice(0, 10)}...</Link>
                 </p>
                 <p className="text-gray-500 text-sm">{Math.round((Date.now() / 1000) - tx.timestamp)} secs ago</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm">From <span className="text-blue-600">{tx.from ? `${tx.from.slice(0, 6)}...${tx.from.slice(-4)}` : 'N/A'}</span></p>
-              <p className="text-sm">To <span className="text-blue-600">{tx.to ? `${tx.to.slice(0, 6)}...${tx.to.slice(-4)}` : 'Contract Creation'}</span></p>
+              <p className="text-sm">From <span className="text-[#0ABAB5]">{tx.from ? `${tx.from.slice(0, 6)}...${tx.from.slice(-4)}` : 'N/A'}</span></p>
+              <p className="text-sm">To <span className="text-[#0ABAB5]">{tx.to ? `${tx.to.slice(0, 6)}...${tx.to.slice(-4)}` : 'Contract Creation'}</span></p>
             </div>
-            <div className="ml-4 p-2 bg-gray-100 rounded-full text-gray-600 text-sm">
+            <div className="ml-4 p-2 bg-gray-100 rounded-full text-[#0ABAB5] text-sm">
               {tx.value ? (tx.value / 1e18).toFixed(4) : 'N/A'} Eth
             </div>
           </li>
