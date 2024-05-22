@@ -38,9 +38,11 @@ function BlocksAndTransactions({ latestBlocks }) {
             </li>
           ))}
         </ul>
-        <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded mt-4 w-full">
-          View All Blocks
-        </button>
+        <Link to="/blocks">
+          <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded mt-4 w-full">
+            View All Blocks
+          </button>
+        </Link>
       </div>
 
       {/* Latest Transactions */}
@@ -57,7 +59,7 @@ function BlocksAndTransactions({ latestBlocks }) {
               <div className="flex items-center">
                 <div className="bg-gray-100 p-2 rounded-full">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-gray-500">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 10h10M7 14h5M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 10h10M7 14h5M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 2 0 012-2z" />
                   </svg>
                 </div>
                 <div className="ml-4">

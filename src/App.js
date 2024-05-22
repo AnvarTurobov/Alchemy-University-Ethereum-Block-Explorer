@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Stats from './components/Stats';
 import BlocksAndTransactions from './components/BlocksAndTransactions';
 import BlockDetails from './components/BlockDetails';
+import BlockList from './components/BlockList';
 import axios from 'axios';
 import { Alchemy, Network } from 'alchemy-sdk';
 
@@ -93,6 +94,7 @@ function App() {
               <BlocksAndTransactions latestBlocks={latestBlocks} />
             </Route>
             <Route path="/block/:blockNumber" component={BlockDetails} />
+            <Route path="/blocks" component={BlockList} />
           </Switch>
         </main>
       </div>
