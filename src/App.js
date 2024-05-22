@@ -7,7 +7,8 @@ import BlocksAndTransactions from './components/BlocksAndTransactions';
 import BlockDetails from './components/BlockDetails';
 import BlockList from './components/BlockList';
 import TransactionDetails from './components/TransactionDetails';
-import TransactionList from './components/TransactionList'; // Import the new component
+import TransactionList from './components/TransactionList'; 
+import SearchResults from './components/SearchResults'; 
 import axios from 'axios';
 import { Alchemy, Network } from 'alchemy-sdk';
 
@@ -98,7 +99,8 @@ function App() {
             <Route path="/block/:blockNumber" component={BlockDetails} />
             <Route path="/blocks" component={BlockList} />
             <Route path="/transaction/:transactionHash" component={TransactionDetails} />
-            <Route path="/transactions" component={TransactionList} /> {/* Add the new route */}
+            <Route path="/transactions" component={TransactionList} />
+            <Route path="/search/:query" component={SearchResults} />
           </Switch>
         </main>
       </div>
