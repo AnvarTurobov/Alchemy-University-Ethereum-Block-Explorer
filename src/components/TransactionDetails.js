@@ -12,15 +12,16 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function TransactionDetails() {
-  const { transactionHash } = useParams();
-  const [transaction, setTransaction] = useState(null);
+  const { transactionHash } = useParams(); // Extracting transaction hash from the URL parameters
+  const [transaction, setTransaction] = useState(null); // State to store transaction details
 
+  // Getting transaction details on component mount or when transactionHash changes
   useEffect(() => {
     const fetchTransactionDetails = async () => {
       try {
         const tx = await alchemy.core.getTransaction(transactionHash);
         const receipt = await alchemy.core.getTransactionReceipt(transactionHash);
-        setTransaction({ ...tx, ...receipt });
+        setTransaction({ ...tx, ...receipt }); // Setting transaction details in state
       } catch (error) {
         console.error('Error fetching transaction details:', error);
       }
@@ -30,7 +31,7 @@ function TransactionDetails() {
   }, [transactionHash]);
 
   if (!transaction) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Displaying loading message if transaction details are not loaded
   }
 
   return (
@@ -54,6 +55,19 @@ function TransactionDetails() {
             <span className="font-bold">Timestamp:</span>
             <span data-tooltip-id="timestampTooltip" data-tooltip-content="The time at which the block containing the transaction was mined." className="tooltip-icon ml-2">ℹ️</span>
           </div>
+        </div>
+        <div className="space-y-4">
+          <div>{transaction.hash}</div>
+          <div>{transaction.status === 1 ? 'Success' : 'Failed'}</div>
+          <div>{transaction.blockNumber}</div>
+          <div>{transaction.blockNumber ? new Date(transaction.blockNumber * 1000).toLocaleString() : 'N/A'}</div>
+        </div>
+      </div>
+
+      <hr className="my-4 border-gray-300" />
+
+      <div className="grid grid-cols-2 gap-8">
+        <div className="space-y-4">
           <div className="flex items-center">
             <span className="font-bold">From:</span>
             <span data-tooltip-id="fromTooltip" data-tooltip-content="The address that sent the transaction." className="tooltip-icon ml-2">ℹ️</span>
@@ -76,10 +90,6 @@ function TransactionDetails() {
           </div>
         </div>
         <div className="space-y-4">
-          <div>{transaction.hash}</div>
-          <div>{transaction.status === 1 ? 'Success' : 'Failed'}</div>
-          <div>{transaction.blockNumber}</div>
-          <div>{transaction.blockNumber ? new Date(transaction.blockNumber * 1000).toLocaleString() : 'N/A'}</div>
           <div>{transaction.from}</div>
           <div>{transaction.to ? transaction.to : 'Contract Creation'}</div>
           <div>{transaction.value ? `${formatUnits(transaction.value, 'ether')} ETH` : 'N/A'}</div>

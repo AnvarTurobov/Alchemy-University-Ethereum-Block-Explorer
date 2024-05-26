@@ -12,14 +12,15 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function BlockDetails() {
-  const { blockNumber } = useParams();
-  const [block, setBlock] = useState(null);
+  const { blockNumber } = useParams(); // Extracting block number from the URL parameters
+  const [block, setBlock] = useState(null); // State to store block details
 
+  // Getting block details on component mount or when blockNumber changes
   useEffect(() => {
     const fetchBlockDetails = async () => {
       try {
         const blockDetails = await alchemy.core.getBlockWithTransactions(parseInt(blockNumber, 10));
-        setBlock(blockDetails);
+        setBlock(blockDetails); // Setting block details in state
       } catch (error) {
         console.error('Error fetching block details:', error);
       }
@@ -29,7 +30,7 @@ function BlockDetails() {
   }, [blockNumber]);
 
   if (!block) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Displaying loading message if block details are not loaded
   }
 
   return (

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import { Alchemy, Network } from 'alchemy-sdk';
-import { Link } from 'react-router-dom';
 
 const settings = {
   apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
@@ -11,29 +10,34 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function SearchResults() {
-  const { query } = useParams();
-  const [results, setResults] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { query } = useParams(); // Extracting search query from the URL parameters
+  const [results, setResults] = useState(null); // State to store search results
+  const [loading, setLoading] = useState(false); // State to indicate loading status
+  const history = useHistory(); // History object to programmatically navigate
 
+  // Getting search results on component mount or when query changes
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         let data;
         if (query.length === 42) {
-          // Address
+          // Search for address transactions
           data = await alchemy.core.getAssetTransfers({
             fromAddress: query,
             category: ['external', 'internal', 'erc20', 'erc721', 'erc1155'],
           });
         } else if (query.length === 66) {
-          // Transaction hash
+          // Search for transaction details
           data = await alchemy.core.getTransaction(query);
+          history.push(`/transaction/${query}`); // Redirect to TransactionDetails page
         } else if (!isNaN(query)) {
-          // Block number
+          // Search for block details
           data = await alchemy.core.getBlockWithTransactions(parseInt(query, 10));
+          history.push(`/block/${query}`); // Redirect to BlockDetails page
+          return; // Exit the function to avoid setting results state
         }
-        setResults(data);
+        setResults(data); // Set search results in state
       } catch (error) {
         console.error('Error fetching search results:', error);
       }
@@ -41,14 +45,14 @@ function SearchResults() {
     };
 
     fetchData();
-  }, [query]);
+  }, [query, history]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Displaying loading message if search results are not loaded
   }
 
   if (!results) {
-    return <div>No results found.</div>;
+    return <div>No results found.</div>; // Displaying message if no results found
   }
 
   return (
@@ -76,12 +80,6 @@ function SearchResults() {
           <div>
             <h3 className="text-xl font-bold mb-4">Transaction Details</h3>
             <p><Link to={`/transaction/${results.hash}`} className="text-blue-600">{results.hash}</Link></p>
-          </div>
-        )}
-        {results.number && (
-          <div>
-            <h3 className="text-xl font-bold mb-4">Block Details</h3>
-            <p><Link to={`/block/${results.number}`} className="text-blue-600">Block #{results.number}</Link></p>
           </div>
         )}
       </div>

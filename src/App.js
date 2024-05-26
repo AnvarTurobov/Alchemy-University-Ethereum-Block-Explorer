@@ -7,7 +7,7 @@ import BlocksAndTransactions from './components/BlocksAndTransactions';
 import BlockDetails from './components/BlockDetails';
 import BlockList from './components/BlockList';
 import TransactionDetails from './components/TransactionDetails';
-import TransactionList from './components/TransactionList'; 
+import TransactionList from './components/TransactionList';
 import SearchResults from './components/SearchResults'; 
 import axios from 'axios';
 import { Alchemy, Network } from 'alchemy-sdk';
@@ -20,15 +20,15 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function App() {
-  const [ethPrice, setEthPrice] = useState(null);
-  const [ethPriceChange, setEthPriceChange] = useState(null);
-  const [marketCap, setMarketCap] = useState(null);
-  const [transactionCount, setTransactionCount] = useState(null);
-  const [medGasPrice, setMedGasPrice] = useState(null);
-  const [lastFinalizedBlock, setLastFinalizedBlock] = useState(null);
-  const [lastSafeBlock, setLastSafeBlock] = useState(null);
-  const [blockNumber, setBlockNumber] = useState();
-  const [latestBlocks, setLatestBlocks] = useState([]);
+  const [ethPrice, setEthPrice] = useState(null); // State for Ethereum price
+  const [ethPriceChange, setEthPriceChange] = useState(null); // State for Ethereum price change
+  const [marketCap, setMarketCap] = useState(null); // State for market cap
+  const [transactionCount, setTransactionCount] = useState(null); // State for transaction count
+  const [medGasPrice, setMedGasPrice] = useState(null); // State for median gas price
+  const [lastFinalizedBlock, setLastFinalizedBlock] = useState(null); // State for the last finalized block
+  const [lastSafeBlock, setLastSafeBlock] = useState(null); // State for the last safe block
+  const [blockNumber, setBlockNumber] = useState(); // State for the latest block number
+  const [latestBlocks, setLatestBlocks] = useState([]); // State for the latest blocks
 
   useEffect(() => {
     const fetchEthData = async () => {
@@ -101,6 +101,7 @@ function App() {
             <Route path="/transaction/:transactionHash" component={TransactionDetails} />
             <Route path="/transactions" component={TransactionList} />
             <Route path="/search/:query" component={SearchResults} />
+            <Route path="/address/:address" component={TransactionList} />
           </Switch>
         </main>
       </div>

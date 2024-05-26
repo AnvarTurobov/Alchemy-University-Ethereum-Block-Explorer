@@ -10,10 +10,11 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function BlockList() {
-  const [blocks, setBlocks] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const observer = useRef();
+  const [blocks, setBlocks] = useState([]); // State to store list of blocks
+  const [loading, setLoading] = useState(false); // State to indicate loading status
+  const observer = useRef(); // Ref for the intersection observer
 
+  // Getting initial blocks on component mount
   useEffect(() => {
     fetchInitialBlocks();
   }, []);

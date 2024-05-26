@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 function Navbar() {
   return (
     <nav className="header-bg p-4 text-black">
@@ -15,7 +14,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
-
-
