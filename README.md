@@ -10,6 +10,8 @@ Styling: Tailwind CSS
 Data Fetching: Axios
 Rate Limiting: Retry mechanism for handling rate-limited API requests
 
+The app is deployed here: https://6654c0f862f31608254e4c2d--guileless-melomakarona-0a9270.netlify.app/
+
 
 # Ethereum Block Explorer
 
