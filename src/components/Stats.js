@@ -7,9 +7,8 @@ function Stats({
   medGasPrice,
   blockNumber,
 }) {
-
   return (
-    <div className="grid grid-cols-3 gap-4 text-center text-gray-700 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center text-gray-700 mb-8">
       <div className="bg-white p-6 rounded shadow">
         <h2 className="text-xl font-bold">ETH Price</h2>
         <p className="text-2xl mt-2">

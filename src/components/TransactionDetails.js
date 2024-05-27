@@ -21,7 +21,8 @@ function TransactionDetails() {
       try {
         const tx = await alchemy.core.getTransaction(transactionHash);
         const receipt = await alchemy.core.getTransactionReceipt(transactionHash);
-        setTransaction({ ...tx, ...receipt }); // Setting transaction details in state
+        const block = await alchemy.core.getBlock(receipt.blockNumber);
+        setTransaction({ ...tx, ...receipt, timestamp: block.timestamp });
       } catch (error) {
         console.error('Error fetching transaction details:', error);
       }
@@ -34,10 +35,14 @@ function TransactionDetails() {
     return <div>Loading...</div>; // Displaying loading message if transaction details are not loaded
   }
 
+  const formatTimestamp = (timestamp) => {
+    return new Date(timestamp * 1000).toLocaleString();
+  };
+
   return (
     <div className="bg-white p-6 rounded shadow">
       <h2 className="text-2xl font-bold mb-6">Transaction Details</h2>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-4">
           <div className="flex items-center">
             <span className="font-bold">Transaction Hash:</span>
@@ -57,16 +62,16 @@ function TransactionDetails() {
           </div>
         </div>
         <div className="space-y-4">
-          <div>{transaction.hash}</div>
+          <div className="truncate md:whitespace-normal">{transaction.hash}</div>
           <div>{transaction.status === 1 ? 'Success' : 'Failed'}</div>
           <div>{transaction.blockNumber}</div>
-          <div>{transaction.blockNumber ? new Date(transaction.blockNumber * 1000).toLocaleString() : 'N/A'}</div>
+          <div>{transaction.timestamp ? formatTimestamp(transaction.timestamp) : 'N/A'}</div>
         </div>
       </div>
-
+      
       <hr className="my-4 border-gray-300" />
 
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-4">
           <div className="flex items-center">
             <span className="font-bold">From:</span>
@@ -90,8 +95,8 @@ function TransactionDetails() {
           </div>
         </div>
         <div className="space-y-4">
-          <div>{transaction.from}</div>
-          <div>{transaction.to ? transaction.to : 'Contract Creation'}</div>
+          <div className="truncate md:whitespace-normal">{transaction.from}</div>
+          <div className="truncate md:whitespace-normal">{transaction.to ? transaction.to : 'Contract Creation'}</div>
           <div>{transaction.value ? `${formatUnits(transaction.value, 'ether')} ETH` : 'N/A'}</div>
           <div>{transaction.gasUsed ? `${formatUnits(transaction.gasUsed.mul(transaction.effectiveGasPrice), 'ether')} ETH` : 'N/A'}</div>
           <div>{transaction.gasPrice ? `${formatUnits(transaction.gasPrice, 'gwei')} Gwei` : 'N/A'}</div>

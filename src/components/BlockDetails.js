@@ -33,10 +33,14 @@ function BlockDetails() {
     return <div>Loading...</div>; // Displaying loading message if block details are not loaded
   }
 
+  const formatTimestamp = (timestamp) => {
+    return new Date(timestamp * 1000).toLocaleString();
+  };
+
   return (
     <div className="bg-white p-6 rounded shadow">
       <h2 className="text-2xl font-bold mb-6">Block {block.number}</h2>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-4">
           <div className="flex items-center">
             <span className="font-bold">Block Height:</span>
@@ -44,7 +48,7 @@ function BlockDetails() {
           </div>
           <div className="flex items-center">
             <span className="font-bold">Status:</span>
-            <span data-tooltip-id="statusTooltip"  className="tooltip-icon ml-2" data-tooltip-content="The finality status of the block.">ℹ️</span>
+            <span data-tooltip-id="statusTooltip" className="tooltip-icon ml-2" data-tooltip-content="The finality status of the block.">ℹ️</span>
           </div>
           <div className="flex items-center">
             <span className="font-bold">Timestamp:</span>
@@ -88,9 +92,9 @@ function BlockDetails() {
         <div className="space-y-4">
           <div>{block.number}</div>
           <div>{block.status ? 'Finalized' : 'Unfinalized (Safe)'}</div>
-          <div>{block.timestamp ? new Date(block.timestamp * 1000).toLocaleString() : ''}</div>
+          <div>{block.timestamp ? formatTimestamp(block.timestamp) : ''}</div>
           <div>{block.transactions ? block.transactions.length : ''}</div>
-          {block.miner && <div>{block.miner}</div>}
+          {block.miner && <div className="truncate md:whitespace-normal">{block.miner}</div>}
           {block.gasUsed && <div>{block.gasUsed.toString()}</div>}
           {block.gasLimit && <div>{block.gasLimit.toString()}</div>}
           {block.baseFeePerGas && (
@@ -98,7 +102,7 @@ function BlockDetails() {
               {formatUnits(block.baseFeePerGas, 'ether')} ETH ({formatUnits(block.baseFeePerGas, 'gwei')} Gwei)
             </div>
           )}
-          {block.extraData && <div>{block.extraData}</div>}
+          {block.extraData && <div className="truncate md:whitespace-normal">{block.extraData}</div>}
         </div>
       </div>
       <Tooltip id="blockHeightTooltip" />

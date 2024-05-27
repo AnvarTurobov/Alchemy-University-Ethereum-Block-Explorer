@@ -30,6 +30,7 @@ function App() {
   const [blockNumber, setBlockNumber] = useState(); // State for the latest block number
   const [latestBlocks, setLatestBlocks] = useState([]); // State for the latest blocks
 
+  // Getting Ethereum data on component mount
   useEffect(() => {
     const fetchEthData = async () => {
       try {

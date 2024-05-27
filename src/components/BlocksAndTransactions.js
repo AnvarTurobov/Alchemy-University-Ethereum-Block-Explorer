@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function BlocksAndTransactions({ latestBlocks }) {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Latest Blocks */}
       <div className="bg-white p-6 rounded shadow">
         <div className="flex justify-between items-center mb-4">
