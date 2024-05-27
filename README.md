@@ -1,3 +1,16 @@
+### Notes from the dev
+
+The Ethereum Blockchain Explorer, named ScanBlock, is a web application designed to provide detailed insights into the Ethereum blockchain. It enables users to explore various aspects of the blockchain, such as viewing the latest blocks, transactions, Ethereum price, market cap, average gas price and detailed information about specific blocks and transactions. The application also supports searching for addresses, transaction hashes, and block numbers.
+
+Technology Stack
+Frontend Framework: React 
+Routing: React Router
+API Integration: Alchemy SDK, CoinGecko API
+Styling: Tailwind CSS
+Data Fetching: Axios
+Rate Limiting: Retry mechanism for handling rate-limited API requests
+
+
 # Ethereum Block Explorer
 
 The lessons this week covered the Ethereum JSON-RPC API and the `ethers.js` library giving us the ability to query the Ethereum blockchain and make transactions!
